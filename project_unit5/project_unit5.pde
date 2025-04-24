@@ -1,6 +1,8 @@
 int MODE;
 int MENUON = 1, GAMEON = 2, ENDON = 3;
 
+
+
 void setup() {
   size(1000, 800);
   MODE = MENUON;
