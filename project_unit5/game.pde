@@ -1,28 +1,12 @@
-int _wave;
+int _wave = 1;
 float _coord;
+Balloon[] balloons;
 
 void gameStart()
 {
-  background(#00D6FA);
+  Wave(_wave);
 }
-
-void Wave(int _wave)
-{
-  Balloon[] balloons = new Balloon[5*_wave];
-  for(Balloon b : balloons)
-  {
-    b.Create(int(random(width)), int(random(height - 800)));
-  }
-  while(_coord >= 0)
-  {  
-      for(Balloon b : balloons)
-      {
-        b.Move(0.5, b);
-      }  
-  }
-  
-  
-  class Balloon 
+class Balloon 
   {
     int _height;
     int _width;
@@ -35,16 +19,18 @@ void Wave(int _wave)
       pushMatrix();
       translate(x, y);
       fill(rColor, gColor, bColor);
-      ellipse(10, 15, 20, 30);
+      ellipse(27, 40, 55, 80);
+      stroke(0);
+      line(27, 80, 27, 140);
       popMatrix();
       _height = y;
       _width = x;
     }
     
-    void Move(float _speed, int i)
+    void Move(float _speed)
     {
       _speed = _wave*_speed;
-      _height += 1* _speed; 
+      _height -= 1* _speed; 
       if(_height <= 0)
       {
         return;
@@ -52,5 +38,24 @@ void Wave(int _wave)
       Create(_width, _height);
       
     }
+  }
+
+void Wave(int _wave) 
+{
+  balloons = new Balloon[5 * _wave];
+  _gameon = true;
+  for (int i = 0; i < balloons.length; i++) 
+  {
+    balloons[i] = new Balloon();
+    balloons[i].Create(int(random(width)), height + int(random(100)));
+  }
+}
+
+void mouseClicked()
+{
+  for (int i = 0; i < balloons.length; i++) 
+  {
+    if(dist(
+    )
   }
 }

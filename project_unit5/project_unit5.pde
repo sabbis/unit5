@@ -1,6 +1,6 @@
 int MODE;
 int MENUON = 1, GAMEON = 2, ENDON = 3;
-
+boolean _gameon;
 
 
 void setup() {
@@ -13,9 +13,19 @@ void draw()
   if (MODE == MENUON) 
   {
     menu();
-  } else if (MODE == GAMEON) 
+  } 
+  else if (MODE == GAMEON) 
   {
-    gameStart();
+    if (!_gameon) {
+      gameStart(); // only call once
+    }
+
+    background(#00D6FA); // clear screen once per frame
+
+    for (Balloon b : balloons) 
+    {
+      b.Move(0.5); // animate balloons
+    }
   }
 }
 
